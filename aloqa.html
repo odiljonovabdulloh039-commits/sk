@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aloqa — SK kiyim dokoni</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <div class="logo-circle">SK</div>
+            <div>SK <span>kiyim dokoni</span></div>
+        </a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="hamburger">
+            <span></span><span></span><span></span>
+        </label>
+
+        <nav class="nav-links">
+            <a href="index.html">Bosh sahifa</a>
+            <a href="katalog.html">Katalog</a>
+            <a href="biz-haqimizda.html">Biz haqimizda</a>
+            <a href="aloqa.html" class="active">Aloqa</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="katalog.html" class="btn btn-primary">Katalogga o'tish</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Biz bilan bog'laning</h1>
+                <p>Savollaringiz, hamkorlik takliflaringiz yoki maxsus buyurtmalar uchun murojaat qiling.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container contact-grid">
+                <div>
+                    <div class="info-card">
+                        <h3>Do'kon manzili</h3>
+                        <p>Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko'chasi, 15-uy</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Telefon raqamlar</h3>
+                        <p>+998 (90) 123-45-67<br>+998 (71) 200-00-00</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ish vaqti</h3>
+                        <p>Dushanba – Yakshanba: 09:00 dan 22:00 gacha (dam olish kunlarisiz)</p>
+                    </div>
+                </div>
+
+                <form action="#sentModal" class="contact-form">
+                    <h3>Xabar yuborish</h3>
+                    <div class="form-group">
+                        <label>Ismingiz</label>
+                        <input type="text" placeholder="Ismingizni kiriting" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon raqamingiz</label>
+                        <input type="tel" placeholder="+998 90 000 00 00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Murojaat mavzusi</label>
+                        <select>
+                            <option>Buyurtma holati</option>
+                            <option>Hamkorlik va ulgurji xarid</option>
+                            <option>Taklif va shikoyatlar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Xabar matni</label>
+                        <textarea rows="4" placeholder="Xabaringizni shu yerga yozing..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Xabarni yuborish</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="sentModal">
+        <a href="#" class="modal-backdrop"></a>
+        <div class="modal" style="text-align: center; max-width: 380px;">
+            <h3 style="margin-bottom: 10px; color: var(--success);">✓ Xabar yuborildi!</h3>
+            <p style="color: var(--muted); margin-bottom: 20px;">Murojaatingiz uchun rahmat. Operatorlarimiz 15 daqiqa ichida javob berishadi.</p>
+            <a href="#" class="btn btn-primary full-width">Yopish</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 12px;">
+                    <div class="logo-circle">SK</div>
+                    <div>SK <span>kiyim dokoni</span></div>
+                </a>
+                <p>Zamonaviy neon uslubidagi rasmiy kiyim-kechak brendi va onlayn do'koni.</p>
+            </div>
+            <div>
+                <h4>Sahifalar</h4>
+                <ul>
+                    <li><a href="index.html">Bosh sahifa</a></li>
+                    <li><a href="katalog.html">Katalog</a></li>
+                    <li><a href="biz-haqimizda.html">Biz haqimizda</a></li>
+                    <li><a href="aloqa.html">Aloqa</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Bog'lanish</h4>
+                <ul>
+                    <li>Toshkent sh., Chilonzor tumani</li>
+                    <li>+998 (90) 123-45-67</li>
+                    <li>info@sk-store.uz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 SK kiyim dokoni. Barcha huquqlar himoyalangan.
+        </div>
+    </footer>
+
+</body>
+</html>

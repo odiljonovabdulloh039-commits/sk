@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog — SK kiyim dokoni</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <div class="logo-circle">SK</div>
+            <div>SK <span>kiyim dokoni</span></div>
+        </a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="hamburger">
+            <span></span><span></span><span></span>
+        </label>
+
+        <nav class="nav-links">
+            <a href="index.html">Bosh sahifa</a>
+            <a href="katalog.html" class="active">Katalog</a>
+            <a href="biz-haqimizda.html">Biz haqimizda</a>
+            <a href="aloqa.html">Aloqa</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="#sellModal" class="btn btn-outline">+ Sotish</a>
+            <a href="#cartModal" class="btn btn-primary">
+                Savatcha <span class="badge-count">2</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Rasmiy SK Katalogi</h1>
+                <p>Kategoriya bo'yicha saralang, o'lchamni tanlang va bir zumda savatchaga qo'shing.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <input type="radio" name="category" id="cat-all" class="filter-radio" checked>
+                <input type="radio" name="category" id="cat-tshirt" class="filter-radio">
+                <input type="radio" name="category" id="cat-hoodie" class="filter-radio">
+                <input type="radio" name="category" id="cat-pants" class="filter-radio">
+                <input type="radio" name="category" id="cat-jacket" class="filter-radio">
+                <input type="radio" name="category" id="cat-shoes" class="filter-radio">
+
+                <div class="categories">
+                    <label for="cat-all" class="cat-btn">Barchasi</label>
+                    <label for="cat-tshirt" class="cat-btn">Futbolkalar</label>
+                    <label for="cat-hoodie" class="cat-btn">Xudi va Sviterlar</label>
+                    <label for="cat-pants" class="cat-btn">Shimlar</label>
+                    <label for="cat-jacket" class="cat-btn">Kurtkalar</label>
+                    <label for="cat-shoes" class="cat-btn">Oyoq kiyimlar</label>
+                </div>
+
+                <div class="products-grid">
+                    <!-- 1-Mahsulot -->
+                    <div class="product-card" data-cat="tshirt">
+                        <div class="img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=500&q=80" alt="SK Neon Qora Futbolka" class="product-img">
+                            <span class="sk-brand-print">SK</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">Futbolkalar</span>
+                            <h3 class="product-title">SK Neon Qora Futbolka</h3>
+                            <div class="product-price">140 000 so'm</div>
+                            <div class="sizes">
+                                <input type="radio" name="size1" id="s1-s"><label for="s1-s" class="size-label">S</label>
+                                <input type="radio" name="size1" id="s1-m" checked><label for="s1-m" class="size-label">M</label>
+                                <input type="radio" name="size1" id="s1-l"><label for="s1-l" class="size-label">L</label>
+                                <input type="radio" name="size1" id="s1-xl"><label for="s1-xl" class="size-label">XL</label>
+                            </div>
+                            <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                        </div>
+                    </div>
+
+                    <!-- 2-Mahsulot -->
+                    <div class="product-card" data-cat="hoodie">
+                        <div class="img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80" alt="SK Signature Oversize Xudi" class="product-img">
+                            <span class="sk-brand-print">SK</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">Xudi va Sviterlar</span>
+                            <h3 class="product-title">SK Signature Oversize Xudi</h3>
+                            <div class="product-price">290 000 so'm</div>
+                            <div class="sizes">
+                                <input type="radio" name="size2" id="s2-s"><label for="s2-s" class="size-label">S</label>
+                                <input type="radio" name="size2" id="s2-m"><label for="s2-m" class="size-label">M</label>
+                                <input type="radio" name="size2" id="s2-l" checked><label for="s2-l" class="size-label">L</label>
+                                <input type="radio" name="size2" id="s2-xl"><label for="s2-xl" class="size-label">XL</label>
+                            </div>
+                            <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                        </div>
+                    </div>
+
+                    <!-- 3-Mahsulot -->
+                    <div class="product-card" data-cat="jacket">
+                        <div class="img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=80" alt="SK Edition Bomper Kurtka" class="product-img">
+                            <span class="sk-brand-print chest">SK</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">Kurtkalar</span>
+                            <h3 class="product-title">SK Edition Bomper Kurtka</h3>
+                            <div class="product-price">450 000 so'm</div>
+                            <div class="sizes">
+                                <input type="radio" name="size4" id="s4-s"><label for="s4-s" class="size-label">S</label>
+                                <input type="radio" name="size4" id="s4-m"><label for="s4-m" class="size-label">M</label>
+                                <input type="radio" name="size4" id="s4-l" checked><label for="s4-l" class="size-label">L</label>
+                                <input type="radio" name="size4" id="s4-xl"><label for="s4-xl" class="size-label">XL</label>
+                            </div>
+                            <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                        </div>
+                    </div>
+
+                    <!-- 4-Mahsulot -->
+                    <div class="product-card" data-cat="pants">
+                        <div class="img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=500&q=80" alt="SK Dark Jinsi Shim" class="product-img">
+                            <span class="sk-brand-print chest">SK</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">Shimlar</span>
+                            <h3 class="product-title">SK Dark Jinsi Shim</h3>
+                            <div class="product-price">250 000 so'm</div>
+                            <div class="sizes">
+                                <input type="radio" name="size3" id="s3-s"><label for="s3-s" class="size-label">S</label>
+                                <input type="radio" name="size3" id="s3-m" checked><label for="s3-m" class="size-label">M</label>
+                                <input type="radio" name="size3" id="s3-l"><label for="s3-l" class="size-label">L</label>
+                                <input type="radio" name="size3" id="s3-xl"><label for="s3-xl" class="size-label">XL</label>
+                            </div>
+                            <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                        </div>
+                    </div>
+
+                    <!-- 5-Mahsulot -->
+                    <div class="product-card" data-cat="shoes">
+                        <div class="img-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYnyiUAAEx10zH_8e_V7BM7HjSpdD9nHaO6llqJdpYsA&s=10" alt="SK Neon Sport Krossovka" class="product-img">
+                            <span class="sk-brand-print shoe">SK</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">Oyoq kiyimlar</span>
+                            <h3 class="product-title">SK Neon Sport Krossovka</h3>
+                            <div class="product-price">380 000 so'm</div>
+                            <div class="sizes">
+                                <input type="radio" name="size5" id="s5-40"><label for="s5-40" class="size-label">40</label>
+                                <input type="radio" name="size5" id="s5-41" checked><label for="s5-41" class="size-label">41</label>
+                                <input type="radio" name="size5" id="s5-42"><label for="s5-42" class="size-label">42</label>
+                                <input type="radio" name="size5" id="s5-43"><label for="s5-43" class="size-label">43</label>
+                            </div>
+                            <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                        </div>
+                    </div>
+
+                    <!-- 6-Mahsulot -->
+                    <div class="product-card" data-cat="hoodie">
+                        <div class="img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=500&q=80" alt="SK Glow Sviter" class="product-img">
+                            <span class="sk-brand-print">SK</span>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-cat">Xudi va Sviterlar</span>
+                            <h3 class="product-title">SK Glow Sviter</h3>
+                            <div class="product-price">220 000 so'm</div>
+                            <div class="sizes">
+                                <input type="radio" name="size6" id="s6-s"><label for="s6-s" class="size-label">S</label>
+                                <input type="radio" name="size6" id="s6-m" checked><label for="s6-m" class="size-label">M</label>
+                                <input type="radio" name="size6" id="s6-l"><label for="s6-l" class="size-label">L</label>
+                                <input type="radio" name="size6" id="s6-xl"><label for="s6-xl" class="size-label">XL</label>
+                            </div>
+                            <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modallar -->
+    <div class="modal-overlay" id="addedModal">
+        <a href="#" class="modal-backdrop"></a>
+        <div class="modal" style="text-align: center; max-width: 380px;">
+            <h3 style="margin-bottom: 10px; color: var(--success);">✓ Savatchaga qo'shildi!</h3>
+            <p style="color: var(--muted); margin-bottom: 20px;">Tanlangan SK brend kiyimi savatchangizga muvaffaqiyatli qo'shildi.</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="#" class="btn btn-outline">Davom etish</a>
+                <a href="#cartModal" class="btn btn-primary">Savatchaga o'tish</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="sellModal">
+        <a href="#" class="modal-backdrop"></a>
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Yangi SK kiyim sotuvga qo'yish</h3>
+                <a href="#" class="close-btn">&times;</a>
+            </div>
+            <form action="#successModal">
+                <div class="form-group">
+                    <label>Kiyim nomi</label>
+                    <input type="text" placeholder="Masalan: SK Neon Oversize Futbolka" required>
+                </div>
+                <div class="form-group">
+                    <label>Narxi (so'm)</label>
+                    <input type="number" placeholder="150000" min="1000" required>
+                </div>
+                <div class="form-group">
+                    <label>Kategoriya</label>
+                    <select>
+                        <option>Futbolkalar</option>
+                        <option>Xudi va Sviterlar</option>
+                        <option>Shimlar</option>
+                        <option>Kurtkalar</option>
+                        <option>Oyoq kiyimlar</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">Do'konga joylash</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cartModal">
+        <a href="#" class="modal-backdrop"></a>
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Sizning savatchangiz</h3>
+                <a href="#" class="close-btn">&times;</a>
+            </div>
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>SK Neon Qora Futbolka (M)</h4>
+                    <p>140 000 so'm x 1</p>
+                </div>
+                <strong>140 000 so'm</strong>
+            </div>
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>SK Signature Oversize Xudi (L)</h4>
+                    <p>290 000 so'm x 1</p>
+                </div>
+                <strong>290 000 so'm</strong>
+            </div>
+            <div class="cart-total">
+                <span>Jami summa:</span>
+                <span>430 000 so'm</span>
+            </div>
+            <form action="#successModal" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px;">
+                <div class="form-group"><input type="text" placeholder="Ismingiz" required></div>
+                <div class="form-group"><input type="tel" placeholder="Telefon (+998...)" required></div>
+                <div class="form-group"><input type="text" placeholder="Yetkazib berish manzili" required></div>
+                <button type="submit" class="btn btn-primary full-width">Buyurtmani tasdiqlash</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="successModal">
+        <a href="#" class="modal-backdrop"></a>
+        <div class="modal" style="text-align: center; max-width: 380px;">
+            <h3 style="margin-bottom: 10px; color: var(--success);">✓ Muvaffaqiyatli bajarildi!</h3>
+            <p style="color: var(--muted); margin-bottom: 20px;">So'rovingiz qabul qilindi. Tez orada operatorlarimiz bog'lanishadi.</p>
+            <a href="#" class="btn btn-primary full-width">Yopish</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 12px;">
+                    <div class="logo-circle">SK</div>
+                    <div>SK <span>kiyim dokoni</span></div>
+                </a>
+                <p>Zamonaviy neon uslubidagi rasmiy kiyim-kechak brendi va onlayn do'koni.</p>
+            </div>
+            <div>
+                <h4>Sahifalar</h4>
+                <ul>
+                    <li><a href="index.html">Bosh sahifa</a></li>
+                    <li><a href="katalog.html">Katalog</a></li>
+                    <li><a href="biz-haqimizda.html">Biz haqimizda</a></li>
+                    <li><a href="aloqa.html">Aloqa</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Bog'lanish</h4>
+                <ul>
+                    <li>Toshkent sh., Chilonzor tumani</li>
+                    <li>+998 (90) 123-45-67</li>
+                    <li>info@sk-store.uz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 SK kiyim dokoni. Barcha huquqlar himoyalangan.
+        </div>
+    </footer>
+
+</body>
+</html>
