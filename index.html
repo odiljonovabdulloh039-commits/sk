@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK kiyim dokoni — Rasmiy brend do'koni</title>
+    <style>
+        :root {
+            --bg: #0f131d;
+            --card-bg: #161b28;
+            --cyan: #00f2fe;
+            --blue: #0084ff;
+            --purple: #9333ea;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(0, 242, 254, 0.25);
+            --glow: 0 0 22px rgba(0, 242, 254, 0.4);
+            --gradient-main: linear-gradient(135deg, #00f2fe 0%, #0084ff 50%, #9333ea 100%);
+            --gradient-btn: linear-gradient(90deg, #00f2fe 0%, #0084ff 100%);
+            --success: #00f2fe;
+            --danger: #f43f5e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* ================= ANIMATSIYALAR ================= */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.88) translateY(15px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes pulseNeon {
+            0%, 100% { 
+                filter: drop-shadow(0 0 8px #00f2fe) drop-shadow(0 0 18px #9333ea);
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 14px #00f2fe) drop-shadow(0 0 28px #9333ea);
+                transform: scale(1.05);
+            }
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            background: rgba(15, 19, 29, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--cyan);
+            text-decoration: none;
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            border: 2px solid var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            font-size: 1.4rem;
+            box-shadow: var(--glow);
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+        .logo span {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            min-width: 200px;
+            display: flex;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 16px;
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-primary {
+            background: var(--gradient-btn);
+            color: #0b0f17;
+            box-shadow: var(--glow);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 28px rgba(0, 242, 254, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 242, 254, 0.18);
+            box-shadow: 0 0 16px rgba(0, 242, 254, 0.35);
+        }
+
+        .badge {
+            background: #0f131d;
+            color: var(--cyan);
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        /* ================= HERO BANNER ================= */
+        .hero {
+            background: radial-gradient(circle at top center, rgba(0, 242, 254, 0.18) 0%, rgba(147, 51, 234, 0.15) 45%, #0f131d 85%);
+            border-bottom: 1px solid var(--border);
+            padding: 70px 5%;
+            text-align: center;
+        }
+
+        .hero-badge {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            border: 3px solid var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            font-size: 2.8rem;
+            color: #ffffff;
+            animation: pulseNeon 3s infinite ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: var(--cyan);
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.45);
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 28px;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease-out 0.2s forwards;
+        }
+
+        .hero .btn {
+            opacity: 0;
+            animation: fadeInUp 0.7s ease-out 0.4s forwards, floatSlow 3s ease-in-out 1.2s infinite;
+            padding: 13px 30px;
+            font-size: 1rem;
+        }
+
+        /* ================= KATEGORIYA FILTRI (SOF CSS) ================= */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .filter-radio {
+            display: none;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 24px;
+        }
+
+        .cat-btn {
+            padding: 8px 18px;
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        .cat-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        #cat-all:checked ~ .categories label[for="cat-all"],
+        #cat-tshirt:checked ~ .categories label[for="cat-tshirt"],
+        #cat-hoodie:checked ~ .categories label[for="cat-hoodie"],
+        #cat-pants:checked ~ .categories label[for="cat-pants"],
+        #cat-jacket:checked ~ .categories label[for="cat-jacket"],
+        #cat-shoes:checked ~ .categories label[for="cat-shoes"] {
+            background: var(--gradient-btn);
+            color: #0b0f17;
+            border-color: var(--cyan);
+            box-shadow: var(--glow);
+        }
+
+        /* Filtrlash mantiqi */
+        #cat-tshirt:checked ~ .products-grid .product-card:not([data-cat="tshirt"]),
+        #cat-hoodie:checked ~ .products-grid .product-card:not([data-cat="hoodie"]),
+        #cat-pants:checked ~ .products-grid .product-card:not([data-cat="pants"]),
+        #cat-jacket:checked ~ .products-grid .product-card:not([data-cat="jacket"]),
+        #cat-shoes:checked ~ .products-grid .product-card:not([data-cat="shoes"]) {
+            display: none;
+        }
+
+        /* ================= PRODUCT GRID ================= */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.5s ease-out forwards;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--cyan);
+            box-shadow: 0 12px 32px rgba(0, 242, 254, 0.22);
+        }
+
+        .img-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1b2234 0%, #0b0e17 90%);
+            position: relative;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.88) contrast(1.06);
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+
+        /* Kiyimdagi Neon SK Brend Yozuvi */
+        .sk-brand-print {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Brush Script MT', 'Segoe Script', cursive;
+            font-size: 2.6rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.95)) drop-shadow(0 0 18px rgba(147, 51, 234, 0.85));
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: 1px;
+        }
+
+        .sk-brand-print.chest {
+            top: 38%;
+            left: 64%;
+            font-size: 1.7rem;
+        }
+
+        .sk-brand-print.shoe {
+            top: 56%;
+            left: 52%;
+            font-size: 2.1rem;
+        }
+
+        .product-info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-cat {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--cyan);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: var(--gradient-btn);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 14px;
+        }
+
+        /* O'lcham tanlash (Sof CSS Radio) */
+        .sizes {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .sizes input[type="radio"] {
+            display: none;
+        }
+
+        .size-label {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border);
+            background: #0f131d;
+            color: var(--text);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .size-label:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            transform: scale(1.08);
+        }
+
+        .sizes input[type="radio"]:checked + .size-label {
+            background: var(--gradient-btn);
+            color: #0b0f17;
+            border-color: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.45);
+            transform: scale(1.05);
+        }
+
+        .add-cart-btn {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* ================= MODAL OYNALAR (:target) ================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 10, 15, 0.8);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+        }
+
+        .modal-overlay:target {
+            display: flex;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            cursor: default;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border: 1px solid var(--cyan);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px;
+            position: relative;
+            z-index: 210;
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.28);
+            animation: modalPop 0.3s ease forwards;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h3 {
+            color: var(--cyan);
+        }
+
+        .close-btn {
+            text-decoration: none;
+            font-size: 1.7rem;
+            line-height: 1;
+            color: var(--muted);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--danger);
+            transform: rotate(90deg);
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 11px 14px;
+            background: #0f131d;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+        }
+
+        /* Cart Items */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 10px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        .cart-item-info p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .cart-item strong {
+            color: var(--cyan);
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+            color: var(--cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+            background: #0b0e16;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#top" class="logo">
+            <div class="logo-circle">SK</div>
+            <div>SK <span>kiyim dokoni</span></div>
+        </a>
+        
+        <form action="#catalog" class="search-bar">
+            <input type="text" placeholder="SK kiyimlarini qidirish...">
+        </form>
+
+        <div class="header-actions">
+            <a href="#sellModal" class="btn btn-outline">+ Kiyim sotish</a>
+            <a href="#cartModal" class="btn btn-primary">
+                Savatcha <span class="badge">2</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+        <div class="hero-badge">SK</div>
+        <h1>SK kiyim dokoni — Rasmiy Kolleksiya</h1>
+        <p>Neon uslubidagi eksklyuziv SK brendi kiyimlarini xarid qiling yoki o'z mahsulotlaringizni soting!</p>
+        <a href="#catalog" class="btn">Xaridni boshlash ↓</a>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container" id="catalog">
+        <!-- Kategoriya radio tugmalari -->
+        <input type="radio" name="category" id="cat-all" class="filter-radio" checked>
+        <input type="radio" name="category" id="cat-tshirt" class="filter-radio">
+        <input type="radio" name="category" id="cat-hoodie" class="filter-radio">
+        <input type="radio" name="category" id="cat-pants" class="filter-radio">
+        <input type="radio" name="category" id="cat-jacket" class="filter-radio">
+        <input type="radio" name="category" id="cat-shoes" class="filter-radio">
+
+        <div class="categories">
+            <label for="cat-all" class="cat-btn">Barchasi</label>
+            <label for="cat-tshirt" class="cat-btn">Futbolkalar</label>
+            <label for="cat-hoodie" class="cat-btn">Xudi va Sviterlar</label>
+            <label for="cat-pants" class="cat-btn">Shimlar</label>
+            <label for="cat-jacket" class="cat-btn">Kurtkalar</label>
+            <label for="cat-shoes" class="cat-btn">Oyoq kiyimlar</label>
+        </div>
+
+        <div class="products-grid">
+            <!-- 1-Mahsulot -->
+            <div class="product-card" data-cat="tshirt">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=500&q=80" alt="SK Neon Qora Futbolka" class="product-img">
+                    <span class="sk-brand-print">SK</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Futbolkalar</span>
+                    <h3 class="product-title">SK Neon Qora Futbolka</h3>
+                    <div class="product-price">140 000 so'm</div>
+                    <div class="sizes">
+                        <input type="radio" name="size1" id="s1-s"><label for="s1-s" class="size-label">S</label>
+                        <input type="radio" name="size1" id="s1-m" checked><label for="s1-m" class="size-label">M</label>
+                        <input type="radio" name="size1" id="s1-l"><label for="s1-l" class="size-label">L</label>
+                        <input type="radio" name="size1" id="s1-xl"><label for="s1-xl" class="size-label">XL</label>
+                    </div>
+                    <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                </div>
+            </div>
+
+            <!-- 2-Mahsulot -->
+            <div class="product-card" data-cat="hoodie">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80" alt="SK Signature Oversize Xudi" class="product-img">
+                    <span class="sk-brand-print">SK</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Xudi va Sviterlar</span>
+                    <h3 class="product-title">SK Signature Oversize Xudi</h3>
+                    <div class="product-price">290 000 so'm</div>
+                    <div class="sizes">
+                        <input type="radio" name="size2" id="s2-s"><label for="s2-s" class="size-label">S</label>
+                        <input type="radio" name="size2" id="s2-m"><label for="s2-m" class="size-label">M</label>
+                        <input type="radio" name="size2" id="s2-l" checked><label for="s2-l" class="size-label">L</label>
+                        <input type="radio" name="size2" id="s2-xl"><label for="s2-xl" class="size-label">XL</label>
+                    </div>
+                    <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                </div>
+            </div>
+
+            <!-- 3-Mahsulot -->
+            <div class="product-card" data-cat="jacket">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=500&q=80" alt="SK Edition Bomper Kurtka" class="product-img">
+                    <span class="sk-brand-print chest">SK</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Kurtkalar</span>
+                    <h3 class="product-title">SK Edition Bomper Kurtka</h3>
+                    <div class="product-price">450 000 so'm</div>
+                    <div class="sizes">
+                        <input type="radio" name="size4" id="s4-s"><label for="s4-s" class="size-label">S</label>
+                        <input type="radio" name="size4" id="s4-m"><label for="s4-m" class="size-label">M</label>
+                        <input type="radio" name="size4" id="s4-l" checked><label for="s4-l" class="size-label">L</label>
+                        <input type="radio" name="size4" id="s4-xl"><label for="s4-xl" class="size-label">XL</label>
+                    </div>
+                    <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                </div>
+            </div>
+
+            <!-- 4-Mahsulot -->
+            <div class="product-card" data-cat="pants">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=500&q=80" alt="SK Dark Jinsi Shim" class="product-img">
+                    <span class="sk-brand-print chest">SK</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Shimlar</span>
+                    <h3 class="product-title">SK Dark Jinsi Shim</h3>
+                    <div class="product-price">250 000 so'm</div>
+                    <div class="sizes">
+                        <input type="radio" name="size3" id="s3-s"><label for="s3-s" class="size-label">S</label>
+                        <input type="radio" name="size3" id="s3-m" checked><label for="s3-m" class="size-label">M</label>
+                        <input type="radio" name="size3" id="s3-l"><label for="s3-l" class="size-label">L</label>
+                        <input type="radio" name="size3" id="s3-xl"><label for="s3-xl" class="size-label">XL</label>
+                    </div>
+                    <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                </div>
+            </div>
+
+            <!-- 5-Mahsulot (Siz yuborgan rasm havolasi + SK) -->
+            <div class="product-card" data-cat="shoes">
+                <div class="img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYnyiUAAEx10zH_8e_V7BM7HjSpdD9nHaO6llqJdpYsA&s=10" alt="SK Neon Sport Krossovka" class="product-img">
+                    <span class="sk-brand-print shoe">SK</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Oyoq kiyimlar</span>
+                    <h3 class="product-title">SK Neon Sport Krossovka</h3>
+                    <div class="product-price">380 000 so'm</div>
+                    <div class="sizes">
+                        <input type="radio" name="size5" id="s5-40"><label for="s5-40" class="size-label">40</label>
+                        <input type="radio" name="size5" id="s5-41" checked><label for="s5-41" class="size-label">41</label>
+                        <input type="radio" name="size5" id="s5-42"><label for="s5-42" class="size-label">42</label>
+                        <input type="radio" name="size5" id="s5-43"><label for="s5-43" class="size-label">43</label>
+                    </div>
+                    <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                </div>
+            </div>
+
+            <!-- 6-Mahsulot -->
+            <div class="product-card" data-cat="hoodie">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=500&q=80" alt="SK Glow Sviter" class="product-img">
+                    <span class="sk-brand-print">SK</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-cat">Xudi va Sviterlar</span>
+                    <h3 class="product-title">SK Glow Sviter</h3>
+                    <div class="product-price">220 000 so'm</div>
+                    <div class="sizes">
+                        <input type="radio" name="size6" id="s6-s"><label for="s6-s" class="size-label">S</label>
+                        <input type="radio" name="size6" id="s6-m" checked><label for="s6-m" class="size-label">M</label>
+                        <input type="radio" name="size6" id="s6-l"><label for="s6-l" class="size-label">L</label>
+                        <input type="radio" name="size6" id="s6-xl"><label for="s6-xl" class="size-label">XL</label>
+                    </div>
+                    <a href="#addedModal" class="btn btn-primary add-cart-btn">Savatga qo'shish</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Kiyim sotish modali -->
+    <div class="modal-overlay" id="sellModal">
+        <a href="#catalog" class="modal-backdrop"></a>
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Yangi SK kiyim sotuvga qo'yish</h3>
+                <a href="#catalog" class="close-btn">&times;</a>
+            </div>
+            <form action="#successModal">
+                <div class="form-group">
+                    <label>Kiyim nomi</label>
+                    <input type="text" placeholder="Masalan: SK Neon Oversize Futbolka" required>
+                </div>
+                <div class="form-group">
+                    <label>Narxi (so'm)</label>
+                    <input type="number" placeholder="Masalan: 150000" min="1000" required>
+                </div>
+                <div class="form-group">
+                    <label>Kategoriya</label>
+                    <select>
+                        <option>Futbolkalar</option>
+                        <option>Xudi va Sviterlar</option>
+                        <option>Shimlar</option>
+                        <option>Kurtkalar</option>
+                        <option>Oyoq kiyimlar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rasm havolasi (URL) — ixtiyoriy</label>
+                    <input type="url" placeholder="https://example.com/rasm.jpg">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Do'konga joylash
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Savatcha modali -->
+    <div class="modal-overlay" id="cartModal">
+        <a href="#catalog" class="modal-backdrop"></a>
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Sizning savatchangiz</h3>
+                <a href="#catalog" class="close-btn">&times;</a>
+            </div>
+            
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>SK Neon Qora Futbolka (M)</h4>
+                    <p>140 000 so'm x 1</p>
+                </div>
+                <strong>140 000 so'm</strong>
+            </div>
+
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>SK Signature Oversize Xudi (L)</h4>
+                    <p>290 000 so'm x 1</p>
+                </div>
+                <strong>290 000 so'm</strong>
+            </div>
+
+            <div class="cart-total">
+                <span>Jami summa:</span>
+                <span>430 000 so'm</span>
+            </div>
+
+            <form action="#successModal" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px;">
+                <h4 style="margin-bottom: 10px; color: #ffffff;">Buyurtma berish</h4>
+                <div class="form-group">
+                    <input type="text" placeholder="Ismingiz" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Telefon raqamingiz (+998...)" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Yetkazib berish manzili" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Buyurtmani tasdiqlash
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Savatga qo'shildi bildirishnomasi -->
+    <div class="modal-overlay" id="addedModal">
+        <a href="#catalog" class="modal-backdrop"></a>
+        <div class="modal" style="text-align: center; max-width: 380px;">
+            <h3 style="margin-bottom: 10px; color: var(--success);">✓ Savatchaga qo'shildi!</h3>
+            <p style="color: var(--muted); margin-bottom: 20px;">Tanlangan SK brend kiyimi savatchangizga muvaffaqiyatli qo'shildi.</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="#catalog" class="btn btn-outline">Davom etish</a>
+                <a href="#cartModal" class="btn btn-primary">Savatchaga o'tish</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Muvaffaqiyatli yuborildi modali -->
+    <div class="modal-overlay" id="successModal">
+        <a href="#catalog" class="modal-backdrop"></a>
+        <div class="modal" style="text-align: center; max-width: 380px;">
+            <h3 style="margin-bottom: 10px; color: var(--success);">✓ Muvaffaqiyatli bajarildi!</h3>
+            <p style="color: var(--muted); margin-bottom: 20px;">So'rovingiz qabul qilindi. Tez orada operatorlarimiz bog'lanishadi.</p>
+            <a href="#catalog" class="btn btn-primary" style="width: 100%;">Bosh sahifaga qaytish</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 SK kiyim dokoni. Barcha huquqlar himoyalangan.
+    </footer>
+
+</body>
+</html>
